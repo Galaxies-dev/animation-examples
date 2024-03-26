@@ -1,20 +1,61 @@
-import { Stack, Link } from 'expo-router';
+import { Stack, Link, LinkProps } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Page() {
+  const examples: { title: string; link: LinkProps<string> }[] = [
+    {
+      title: '1. Reanimated',
+      link: { href: '/reanimated' },
+    },
+    {
+      title: '2. Moti',
+      link: { href: '/moti' },
+    },
+    {
+      title: '3. Marquee',
+      link: { href: '/marquee' },
+    },
+    {
+      title: '4. Lottie',
+      link: { href: '/lottie' },
+    },
+    {
+      title: '5. Rive',
+      link: { href: '/rive' },
+    },
+    {
+      title: '6. Spring',
+      link: { href: '/spring' },
+    },
+    {
+      title: '7. TextInput',
+      link: { href: '/textinput' },
+    },
+    {
+      title: '8. Carousel',
+      link: { href: '/carousel' },
+    },
+    {
+      title: '9. Animatable',
+      link: { href: '/animatable' },
+    },
+    {
+      title: '10. Skia',
+      link: { href: '/skia' },
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Stack.Screen options={{ title: 'Overview' }} />
-        <View>
-          <Text style={styles.title}>Hello World</Text>
-          <Text style={styles.subtitle}>This is the first page of your app.</Text>
-        </View>
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Show Details</Text>
-          </TouchableOpacity>
-        </Link>
+        <Stack.Screen options={{ title: 'Animation Libraries' }} />
+        {examples.map(({ title, link }) => (
+          <Link href={link.href} key={link.href} asChild>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>{title}</Text>
+            </TouchableOpacity>
+          </Link>
+        ))}
       </View>
     </View>
   );
@@ -51,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     maxWidth: 960,
     marginHorizontal: 'auto',
-    justifyContent: 'space-between',
+    gap: 12,
   },
   title: {
     fontSize: 64,
